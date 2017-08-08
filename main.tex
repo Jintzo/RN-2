@@ -1,0 +1,24 @@
+\documentclass[aip,jmp,amsmath,amssymb,reprint,nobalancelastpage]{revtex4-1}
+
+\include{assets/dependencies}
+
+\include{assets/definitions}
+
+\titleformat{\paragraph}[runin]
+{\scriptsize\bfseries\scshape}{}{0em}{}
+\titlespacing*{\paragraph}{0em}{1em}{1em}
+
+\newenvironment{smashedalign}
+ {$\!\aligned}
+ {\endaligned$}
+
+\begin{document}
+
+\begin{scriptsize}
+
+  \input{chapters/01_Einfuehrung}
+
+  \input{chapters/02_Anwendungen}
+
+\end{scriptsize}
+\end{document}
