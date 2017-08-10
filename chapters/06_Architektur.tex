@@ -35,13 +35,9 @@
     - \emph{Ziel}: Austausch anwendungsabhängiger Daten \\*
 \end{items}
 \begin{figure}[H]\centering\label{OSI}\includegraphics[width=0.4\textwidth]{OSI}\end{figure}
-\begin{center}
-  Schichtenmodell OSI
-\end{center}
 \begin{figure}[H]\centering\label{OSIKapselung}\includegraphics[width=0.33\textwidth]{OSIKapselung}\end{figure}
-\begin{center}
-  Datenkapselung OSI
-\end{center}
+
+\newpage
 
 \paragraph{Internet-Referenzmodell}
 \begin{items}
@@ -49,13 +45,7 @@
   \item Schichten gehen über gesamtes Kommunikationssystem, nicht nur auf einem Gerät
 \end{items}
 \begin{figure}[H]\centering\label{Internetmodell}\includegraphics[width=0.33\textwidth]{Internetmodell}\end{figure}
-\begin{center}
-  Schichtenmodell Internet
-\end{center}
 \begin{figure}[H]\centering\label{KapselungInternet}\includegraphics[width=0.33\textwidth]{KapselungInternet}\end{figure}
-\begin{center}
-  Datenkapselung Internet
-\end{center}
 
 \paragraph{Protokolle und Dienste}
 \begin{items}
@@ -94,27 +84,22 @@
     3. DHCP-Server im Router empfängt + entpackt Paket \\*
     4. DHCP-Server erstellt DHCP ACK-Paket mit Client-IP, Router-IP, DNS-IP \\*
     5. DHCP-Antwort wird verpackt und direkt an Client gesendet \\*
-    6. Client empfängt und entpackt Paket \\*
-    \( \leadsto \) Client hat nun IP, kennt lokalen Router und Name + Adresse von DNS
+    6. Client empfängt und entpackt Paket
   \item \textbf{ARP}: MAC des Routers kennenlernen \\*
     1. ARP-Anfrage an Broadcast-Adresse \\*
-    2. Router sendet seine MAC in ARP-Antwort \\*
-    \( \leadsto \) Client kennt MAC des Routers
+    2. Router sendet seine MAC in ARP-Antwort
   \item \textbf{DNS}: IP-Adresse der angeforderten Webseite kennenlernen \\*
     1. IP-Datagramm mit DNS-Anfrage wird von LAN-Switch zu lokalem Router geleitet \\*
     2. IP-Datagramm: lokales Netz \( \to \) ISP-Netz \( \to \) DNS-Server (mit RIP oder OSPF) \\*
     3. Paket wird an DNS-Server entpackt \\*
-    4. DNS-Server antwortet Client mit angeforderter IP \\*
-    \( \leadsto \) Client kennt IP der gesuchten Webseite
+    4. DNS-Server antwortet Client mit angeforderter IP
   \item \textbf{TCP}: Aufbau einer TCP-Verbindung \\*
     1. Eröffnung eines TCP-Sockets zum Webserver \\*
     2. TCP-SYN-Segment wird zu Server geroutet \\*
-    3. Server antwortet mit SYNACK \\*
-    \( \leadsto \) TCP-Verbindung zwischen Client und Server aufgebaut
+    3. Server antwortet mit SYNACK
   \item \textbf{HTTP}: Webseite laden \\*
     1. HTTP-Anfrage wird per TCP-Socket gesendet \\*
     2. IP-Datagramm mit HTTP-Anfrage wird zu Webserver geroutet \\*
     3. Server antwortet mit HTTP-Antwort \\*
-    4. IP-Datagramm mit HTTP-Antwortet wird zurück zu Client geroutet \\*
-    \( \leadsto \) Client erhält Webseite
+    4. IP-Datagramm mit HTTP-Antwortet wird zurück zu Client geroutet
 \end{items}
