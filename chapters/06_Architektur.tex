@@ -1,7 +1,27 @@
 \section{Architektur}
+\paragraph{Grundmodell}
+\begin{items}
+	\item Daten überbrücken räumliche Distanz (abstrakten Übertragungsabschnitt)
+	\item Abstraktion auf Basis von \textbf{Schichten}, stellen Dienste über Schnittstellen bereit
+	\item Höhere Schicht erfordert Dienste der darunterliegenden Schicht
+	\smallskip
+	\item \textbf{Ziele:}\\*
+		- Komplexitätsreduktion (Vereinheitlichung, Modularisierung)\\*
+		- Interoperabilität (Hersteller-/Systemunabhängigkeit)\\*
+		- Flexibilität und Erweiterbarkeit
+		\medskip
+	\item \textbf{Horizontale Kommunikation}: zwischen Sender und Empfänger \\*
+			- Protokollinstanzen einer Schicht tauschen Daten aus um Dienst zu erbringen
+	\item \textbf{Vertikale Kommunikation}: zwischen verschiedenen Schichten in einem System \\*
+			- Protokollinstanz Schicht n greift auf Dienste von Protokollinstanz Schicht n-1 zu
+\end{items}
 
 \paragraph{OSI-Referenzmodell}
 \begin{items}
+\item \textbf{Logisches} Modell (gedankliche Strukturierung), nicht Implementierungsmodell
+\item Keine Protokolle (nur Prinzipien), offener Standard
+\item Unterteilung in Transportsystem (1-4) und Anwendungssystem (5-7)
+\bigskip
   \item \textbf{Schicht 1}: Bit-Übertragungsschicht (\emph{physical layer}) \\*
     - Bitübertragung \\*
     - Verwendung von Leitungscodes usw \\*
@@ -26,52 +46,49 @@
     - Multiplexing
   \item \textbf{Schicht 5}: Sitzungsschicht (\emph{session layer}) \\*
     - \emph{Ziel}: Nichtunterbrechbarkeit von Kommunikationsbeziehungen \\*
-    - Datenauschtauschsgliederung nach Gesichtspunkten der Anwendung
+    - Datenauschtauschsgliederung nach Gesichtspunkten der Anwendung\\*
+    - Ablaufsteuerung/Koordination
+    - Bereitstellen von Sitzungen
   \item \textbf{Schicht 6}: Darstellungsschicht (\emph{presentation layer}) \\*
     - \emph{Ziel}: Einheitliche Datendarstellung \\*
     - Kommunikation zwischen heterogenen Geräten \\*
-    - Beibehaltung der Informationssemantik
+    - Beibehaltung der Informationssemantik bei Überführung der Syntax
   \item \textbf{Schicht 7}: Anwendungsschicht (\emph{application layer}) \\*
     - \emph{Ziel}: Austausch anwendungsabhängiger Daten \\*
 \end{items}
 \begin{figure}[H]\centering\label{OSI}\includegraphics[width=0.4\textwidth]{OSI}\end{figure}
-\begin{figure}[H]\centering\label{OSIKapselung}\includegraphics[width=0.33\textwidth]{OSIKapselung}\end{figure}
+%\begin{figure}[H]\centering\label{OSIKapselung}\includegraphics[width=0.33\textwidth]{OSIKapselung}\end{figure}
 
 \newpage
 
 \paragraph{Internet-Referenzmodell}
 \begin{items}
   \item Einfachereres Modell, nur 4 Schichten (manchmal 5 bei Trennung von Sicherung und Bit-Übertragung)
-  \item Schichten gehen über gesamtes Kommunikationssystem, nicht nur auf einem Gerät
+  \item Darstellungs- und Sitzungsaufgaben in Anwendungen verlagert
 \end{items}
 \begin{figure}[H]\centering\label{Internetmodell}\includegraphics[width=0.33\textwidth]{Internetmodell}\end{figure}
+
+\paragraph{Datenkapselung}
+\begin{items}
+	\item Information wird durch alle Schichten durchgereicht
+	\item Daten werden in jeder Schicht gekapselt (mit Header und/oder Trailer versehen)
+\end{items}
 \begin{figure}[H]\centering\label{KapselungInternet}\includegraphics[width=0.33\textwidth]{KapselungInternet}\end{figure}
 
 \paragraph{Protokolle und Dienste}
 \begin{items}
   \item \textbf{Protokoll}: Regeln und Formate für Datenaustausch \emph{innerhalb} einer Schicht
-  \item \textbf{Dienst}: \\*
+  \item \textbf{Dienst}: Bündelung zusammengehöriger Funktionen \\*
     - Zusammenwirkung von Protokollinstanzen \emph{innerhalb} einer Schicht \\*
-    - Bündelung zusammengehöriger Funktionen \\*
-    - \emph{Dienstfunktion}: einzelne Dienstteile können unabhängig voneinander nutzbar \\*
+    - Schichten gehen über gesamtes Kommunikationssystem hinweg\\*
+    - \emph{Dienstfunktion}: einzelne Dienstteile unabhängig voneinander nutzbar \\*
     - \emph{Dienstprimitiv}: Einzelvorgänge einer Dienstfunktion \\*
       \phantom{-} \( \cdot \) \emph{request} (Req) --- Beauftragung (Nehmer \( \to \) Geber) \\*
       \phantom{-} \( \cdot \) \emph{indication} (Ind) --- Partnerbenachrichtigung (Nehmer \( \leftarrow \) Geber) \\*
       \phantom{-} \( \cdot \) \emph{response} (Rsp) --- Partnerbeantwortung (Nehmer \( \to \) Geber) \\*
-      \phantom{-} \( \cdot \) \emph{confirmation} (Cnf) Abschlussbenachrichtigung (Nehmer \( \leftarrow  \) Geber) \\*
+      \phantom{-} \( \cdot \) \emph{confirmation} (Cnf) --- Abschlussbenachrichtigung (Nehmer \( \leftarrow  \) Geber) \\*
     - \emph{Dienstehierarchie}: Dienst baut auf anderen Diensten auf (Dienstbringer/-nehmer) \\*
     - \emph{Dienstzugangspunkte}: Dienstschnittstellen
-\end{items}
-
-\paragraph{Horizontale und vertikale Kommunikation}
-\begin{items}
-  \item \textbf{Horizontale Kommunikation}: \\*
-    - zwischen Sender und Empfänger \\*
-    - Protokollinstanzen einer Schicht tauschen Daten aus um Dienst zu erbringen
-  \item \textbf{Vertikale Kommunikation} \\*
-    - zwischen Schichten \\*
-    - Protokollinstanz Schicht n greift auf Dienste von Protokollinstanz Schicht n-1 zu \\*
-    - Protokollinstanz Schicht n gibt Daten an Protokollinstanz Schicht n+1 weiter
 \end{items}
 
 \paragraph{Ablauf --- Webseitenaufruf}

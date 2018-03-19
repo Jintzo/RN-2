@@ -3,28 +3,37 @@
 \paragraph{Was ist das Internet?}
 \begin{items}
   \item \textbf{Komponentensicht} \\*
-    1. \emph{Computer} -- führen Netzwerkanwendungen aus \\*
+    1. \emph{Hosts} -- führen Netzwerkanwendungen aus \\*
     2. \emph{Kommunikationsmedien} -- Kupferkabel, Glasfaser, Funk \\*
     3. \emph{Zwischensysteme} -- Weiterleitung durch Router und Switches
   \item \textbf{Dienstsicht} \\*
-    \( \Rightarrow \) Infrastruktur, die Dienste bereitstellt \\*
+    \( \Rightarrow \) Infrastruktur, die Dienste für \emph{verteilte} Anwendungen bereitstellt \\*
     - \emph{Kommunikation} (Mail, Messaging, soziale Medien) \\*
     - \emph{Information} (Surfen) \\*
     - \emph{Unterhaltung} (Streaming, Spiele)
+    \item \textbf{Protokolle} definieren Regel und Formate für Kommunikation
 \end{items}
 
 \paragraph{Rand des Internet}
 \begin{items}
-  \item \textbf{Geräte} \\*
-    - Clients \\*
-    - Server
-  \item \textbf{Zugangsnetze} \\*
-    - Heimnetz \\*
-    - Mobiles Zugangsnetz \\*
-    - Unternehmensnetz
+  \item \textbf{Endsysteme: } Clients, Server
+  \item \textbf{Zugangsnetze: } Heimnetz, Mobiles Zugangsnetz, Unternehmensnetz
 \end{items}
 
 \paragraph{Kern des Internet}
 \begin{items}
-  \item \textbf{Pakete}: voneinander unabhängige Einheiten für die Weiterleitung -- werden durch Netz zur Zielanwendung geleitet \\*
+  \item \textbf{Pakete}: Voneinander unabhängige Einheiten für die Weiterleitung -- werden durch das Netz zur Zielanwendung geleitet\\*
+  \item \textbf{Interne Struktur:}\\*
+  - Zugangs-ISPs verbunden mit Globalen Tier 1 ISPs\\*
+  - Verknüpft durch peering links und an IXPs (Internet Exchange Point)\\*
+  - Dazu Content Provider Networks und Regionale Netze
+\end{items}
+
+\paragraph{Internet-Historie}
+\begin{items}
+	\item \textbf{Paradigmenwechsel}: Telefonnetz (Leitungsvermittelt, Zentral)\\* $\Rightarrow$ Internet (Paketvermittelt, Dezentral)
+	
+	\item \textbf{Anfang: ARPAnet} (1969), dann weitere Netze, Protokolle\\* 
+		Zunächst Universitäten, dann zunehmende Kommerzialisierung
+	\item \textbf{Entwurfsprinzipien:} Minimalism/Autonomy, Best Effort Service, Stateless Routers, Decentralized Control
 \end{items}

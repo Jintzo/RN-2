@@ -1,54 +1,41 @@
 \section{Anwendungsschicht}
+\begin{figure}[H]\centering\includegraphics[width=80px]{SchichtAnwendung}\end{figure}
 
 \paragraph{Historie}
 \begin{items}
-  \item \textbf{70er/80er}: \\*
-    - textbasierte Anwendungen
-  \item \textbf{90er}: \\*
-    - World Wide Web \\*
-    - Instant Messaging \\*
-    - P2P-Filesharing
-  \item \textbf{seit 2000}: steigende Vielfalt + Allgegenwärtigkeit \\*
-    - Streaming (Spotify, YouTube) \\*
-    - Gaming \\*
-    - Soziale Netzwerke \\*
-    - Smartphones
+  \item \textbf{70er/80er}: Textbasierte Anwendungen (EMail, Remote Access)
+  \item \textbf{90er}: World Wide Web, Instant Messaging, P2P-Filesharing
+  \item \textbf{seit 2000}: steigende Vielfalt + Allgegenwärtigkeit: ($\Rightarrow$ Kritische Infrastruktur) \\* Voice over IP, Streaming, Gaming, Soziale Netzwerke, Smartphones
 \end{items}
 
-\paragraph{Grundlagen --- Schichtenmodell}
+\paragraph{Schichtenmodell}
 \begin{items}
+  \item \textbf{Prozess}: Programm, das im Endsystem (Anwendungsschicht) abläuft
+  \item \textbf{Nachricht}: Ausgetauscht zwischen Prozessen auf \emph{unterschiedlichen} Endsystemen
   \item Kommunikation in Schichten organisiert
   \item \textbf{Anwendungsschicht}: oberste Schicht \\*
     - enthält Anwendungsprotokolle \\*
     - Anwendung kümmert sich nicht um Datentransport
   \item \textbf{Datentransport}: unter Anwendungsschicht liegende Schichten \\*
     - Interna für Anwendung transparent \\*
-    - Verzögerungen bleiben vor Anwendung verborgen
+    - Aber: Anwendung merkt Verzögerungen (Latenzen)
 \end{items}
 
-\paragraph{Grundlagen --- Verzögerung}
+\paragraph{Verzögerung (Latenz)}
 \begin{items}
-  \item Abhängig von \\*
-    - \emph{Ausbreitungsverzögerung} \( t_a \) \\*
-    - \emph{Sendezeit} \( t_s \) \\*
-    - \emph{Pufferfüllstände}
   \item \textbf{Ausbreitungsverzögerung} \( t_a = \tfrac{d}{v} \) \\*
-    - \emph{Zeitspanne zwischen Absenden eines Signals und dessen Eintreffen am anderen \\* \phantom{-} Ende des Mediums} \\*
-    - Abhängig von: \\* 
-      \phantom{-} Ausbreitungsgeschwindigkeit \( v \) \\*
-      \phantom{-} Länge des Mediums \( d \)
+    \emph{Zeitspanne zwischen Absenden eines Signals und dessen Eintreffen am anderen \\* \phantom{-} Ende des Mediums} \\*
+    Abhängig von: Ausbreitungsgeschwindigkeit \( v \), Länge des Mediums \( d \)
   \item \textbf{Sendezeit} \( t_s = \tfrac{X}{r} \) \\*
-    - \emph{Zeit zwischen Beginn und Abschluss der Sendung} \\*
-    - Abhängig von: \\*
-      \phantom{-} Datenmenge \( X \) \\*
-      \phantom{-} Datenrate des Mediums \( r \) \\*
-    - \textbf{Achtung}: Nach Sendungsabschluss sind die Daten noch nicht beim Empfänger! \\* \phantom{-} \( \leadsto \) Ausbreitungsverzögerung \( t_a \)
+    \emph{Zeit zwischen Beginn und Abschluss der Sendung} \\*
+    Abhängig von: Datenmenge \( X \), Datenrate (Durchsatz) des Mediums \( r \) \\*
+    \textbf{Achtung}: Nach Sendungsabschluss sind die Daten noch nicht beim Empfänger! \\* \phantom{-} \( \leadsto \) Ausbreitungsverzögerung \( t_a \)
   \item \textbf{Verzögerung im Router} \\*
     - \emph{Pufferung} der Daten in Warteschlange \\*
     - \emph{Verarbeitung} (Fehlerüberprüfung usw.)
 \end{items}
 
-\paragraph{Grundlagen --- Protokollstack}
+\paragraph{Protokollstack}
 \begin{items}
   \item \textbf{Application}: SMTP, HTTP, XMPP,\dots
   \item \textbf{Transport}: TCP, UDP
@@ -57,43 +44,29 @@
   \item \textbf{Physical}: Bits auf Medium
 \end{items}
 
-\paragraph{Grundlagen --- Prozess und Nachricht}
-\begin{items}
-  \item \textbf{Prozess}: Programm, das im Endsystem (Anwendungsschicht) abläuft
-  \item \textbf{Nachricht}: Ausgetauscht zwischen Prozessen auf \emph{unterschiedlichen} Endsystemen
-\end{items}
-
-\paragraph{Grundlagen --- Socket und Interface}
+\paragraph{Socket und Interface}
 \begin{items}
   \item \emph{Programmierschnittstelle für verteilte Anwendungen}
   \item Von OS bereitgestellte API
   \item Anwendungsprozess sendet/empfängt Nachrichten zum/vom Socket
   \item \textbf{Portnummern}: (De-) Multiplexing auf Endsystemen \\*
-    - viele Prozesse auf Endsystem kommunizieren gleichzeitig über Netzwerk \\*
+    Viele Prozesse auf einem Endsystem kommunizieren gleichzeitig über Netzwerk \\*
     \phantom{-} \( \leadsto \) eindeutige Socket-Identifikation über Portnummer
 \end{items}
 
-\paragraph{Grundlagen --- Client-Server-Anwendungen}
+\paragraph{Client-Server-Anwendungen}
 \begin{items}
-  \item \textbf{Server}: \\*
-    - ständig in Betrieb \\*
-    - permanente IP-Adresse \\*
-    - häufig in Datenzentren
-  \item \textbf{Clients}: \\*
-    - kommunizieren mit Server \\*
-    - kommunizieren \emph{nicht} direkt miteinander \\*
-    - evtl. nicht immer verbunden \\*
-    - evtl. dynamische IP-Adresse
+  \item \textbf{Server}: Ständig in Betrieb, permanente IP-Adresse, häufig in Datenzentren
+  \item \textbf{Clients}: Kommunizieren mit Server, \emph{nicht} direkt miteinander, dynamische IP-Adresse
 \end{items}
 
-\paragraph{Grundlagen --- Peer-to-Peer-Anwendungen}
+\paragraph{Peer-to-Peer-Anwendungen}
 \begin{items}
   \item Endysteme kommunizieren direkt miteinander \\*
-    - fordern Dienste von anderen Peers an \\*
-    - nicht permanent verbunden, wechseln dymanisch IP-Adressen \\*
+    - Fordern Dienste von anderen Peers an und stellen selbst Dienste bereit \\*
+    - Nicht permanent verbunden, wechseln dynamisch IP-Adressen \\*
     \phantom{-} \( \leadsto \) komplexes Management
-  \item selbst-skalierend \\*
-    - neue Peers erhöhen Kapazität, fordern aber auch selber Dienste an
+  \item \textbf{Selbst-skalierend}: Neue Peers erhöhen Kapazität, fordern aber auch Dienste an
 \end{items}
 
 \paragraph{Web und HTTP --- Web-Dokumente}
@@ -102,173 +75,162 @@
   \item Jedes Objekt über URL (\emph{uniform resource locator}) referenzierbar
 \end{items}
 
-\paragraph{HTTP --- Überblick}
+\paragraph{HTTP (Hypertext Transfer Protocol)}
 \begin{items}
-  \item Protokoll der Anwendungsschicht (\emph{hypertext transfer protocol}) \\*
-    - einfaches, ASCII-basiertes Transferprotokoll
+  \item ASCII-basiertes Transfeprotokoll der Anwendungsschicht im Web
   \item Basiert auf Client/Server-Modell \\*
-    - \emph{Client}: Browser, der Web-Objekte anfordert, empfängt und darstellt \\*
-    - \emph{Server}: sendet über HTTP angeforderte Objekte
-  \item zwei Nachrichten-Typen: \emph{Request}, \emph{Response}
-  \item Zustandslos: \\*
-    - jeder Request wird individuell bearbeitet \\*
-    - keine Zustandsinformation auf dem Server
-  \item nutzt TCP zur Kommunikation \\*
-    1. Client initiiert Verbindungsaufbau \\*
+    \emph{Client (Request)}: Browser, der Web-Objekte anfordert\\*
+    \emph{Server (Response)}: Sendet über HTTP angeforderte Objekte
+  \item Zustandslos: Jeder Request individuell, keine Zustandsinformation auf dem Server
+  \item Kommunikation per TCP: \\*
+    1. Client initiiert Verbindungsaufbau (Standard-Port: 80) \\*
     2. Server akzeptiert Verbindung \\*
     3. Austausch von HTTP-Nachrichten \\*
     4. Abbau der TCP-Verbindung
-\end{items}
-
-\paragraph{HTTP --- Methoden}
-\begin{items}
-  \item \emph{HTTP-Anfragen können verschiedene Methoden nutzen}
-  \item \textbf{GET}: Resource von Server zu Client übertragen (z.B. normale Webseite)
+	\smallskip
+  \item HTTP-Anfragen können verschiedene \textbf{Methoden} nutzen:
+  \item \textbf{GET}: Ressource von Server zu Client übertragen (z.B. normale Webseite)
   \item \textbf{POST}: Daten zu Ressource übertragen (z.B. Web-Formular)
-  \item Weitere Methoden: \\*
-    - PUT --- neue Ressource anlegen \\*
-    - DELETE --- Ressource löschen \\*
-    - HEAD --- wie GET, aber nur HTTP-Header übertragen \\*
-    - \dots
-\end{items}
-
-\paragraph{HTTP --- Status-Codes}
-\begin{items}
-  \item Verarbeitungsindikator (Erfolg/Fehlschlag + Gründe)
+  \item PUT --- neue Ressource anlegen
+  \item DELETE --- Ressource löschen
+  \item HEAD --- wie GET, aber nur HTTP-Header übertragen
+   \smallskip
+  \item \textbf{Status-Codes:} Verarbeitungsindikator (Erfolg/Fehlschlag + Gründe)
   \item \textbf{200}: Erfolg; Antwort ist in dieser Nachricht
   \item \textbf{301}: Angefragtes Objekt wurde verschoben (neue URL in Nachricht spezifiziert)
   \item \textbf{400}: Server hat Anfrage nicht verstanden
   \item \textbf{404}: Angefordertes Objekt existiert nicht
   \item \textbf{505}: HTTP-Version nicht unterstützt
 \end{items}
+  \begin{figure}[H]\centering\includegraphics[width=0.33\textwidth]{HTTPRequest}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=0.33\textwidth]{HTTPResponse}\end{figure}
 
 \paragraph{HTTP --- Verbindungen}
 \begin{items}
-  \item \textbf{Non-persistent HTTP}: \\*
-    - höchstens ein Objekt wird über TCP-Verbindung gesendet, danach geschlossen \\*
-    \phantom{-} \( \leadsto \) Herunterladen mehrerer Objekte erfodert mehrere TCP-Verbindungen
-  \item \textbf{Persistent HTTP}: mehrere Objekte über eine TCP-Verbindung
-\end{items}
-
-\paragraph{Non-persistent HTTP --- Antwortzeit}
-\begin{items}
   \item \textbf{Round Trip Time (RTT)}: Zeit, die Paket von Sender zu Empfänger und zurück benötigt
-  \item \textbf{HTTP-Antwortzeit}: \\*
-    - ein RTT für Verbindungsaufbau \\*
-    - ein RTT für HTTP-Anfrage und erste Antwortbytes \\*
-    - Zeit \( t_s \) für Senden der Datei \\*
-    \phantom{-} \( \leadsto \) \textbf{Antwortzeit} \( 2*\text{RTT} + t_s \) 
+  \item \textbf{Non-persistent HTTP}: Höchstens ein Objekt über eine TCP-Verbindung, danach geschlossen \( \leadsto \) Mehrere Objekte erfodern mehrere TCP-Verbindungen (evtl. parallel)\\*
+  \textbf{Antwortzeit}: \( 2*\text{RTT} + t_s \) pro Objekt\\*
+  	- eine RTT für Verbindungsaufbau \\*
+  	- eine RTT für HTTP-Anfrage und erste Antwortbytes \\*
+  	- Zeit \( t_s \) für Senden des Objekts
+  \item \textbf{Persistent HTTP}: Mehrere Objekte über eine TCP-Verbindung\\*
+  \textbf{Antwortzeit}: Nur eine RTT für nachfolgende Objekte
 \end{items}
 
-\paragraph{Cookies}
+\paragraph{HTTP --- Cookies}
 \begin{items}
   \item \emph{Speichert Nutzer-Server-Zustand}
   \item \( \leadsto \) Server kann Inhalt abhängig von Nutzeridentifikation bereitstellen
   \item \textbf{Komponenten}: \\*
-    - Cookie-Information in HTTP-Response-Nachricht \\*
+    - Cookie-Information in HTTP-Response-Nachricht (\textit{Set-Cookie}) \\*
     - Cookie-Information wird in nachfolgenden HTTP-Requests genutzt \\*
     - Datei mit Cookies wird auf Nutzer-Endsystem vom Browser verwaltet \\*
     - Datenbank bei Webseite \( \leadsto \) Server muss Cookies richtig interpretieren können
-\end{items}
-
-\paragraph{Cookies --- Privatsphäre}
-\begin{items}
-  \item Webseiten unterscheiden Nutzer durch Cookies \\*
-    \( \leadsto \) Werbeanbieter können Nutzer über viele Webseiten tracken
-  \item Webseiten können durch Cookies sehr viel über Nutzer lernen
+	\item \textbf{Privatsphäre: } Webseiten unterscheiden Nutzer durch Cookies \\*
+    	\( \leadsto \) Werbeanbieter können Nutzer über viele Seiten tracken, viel über Nutzer lernen
 \end{items}
 
 \paragraph{Mail --- Komponenten}
 \begin{items}
-  \item \textbf{User Agent} (UA): \\*
-    - lesen, senden, weiterleiten \\*
-    - Beispiele: Outlook, Thunderbird
-  \item \textbf{Mailserver}: \\*
-    - \emph{mail transfer agent} (MTA) \\*
-    - \emph{mail delivery agent} (MDA) \\*
-    - User-Mailboxen
-  \item \textbf{\emph{simple mail transfer protocol}} (SMTP) \\*
-    - Client/Server-Modell \\*
-    - Transfer von Mails vom User Agent zum Mailserver
+  \item \textbf{User Agent} (UA): Lesen, senden, weiterleiten
+  \item \textbf{Mailserver}: User-Mailboxen, \emph{mail transfer agent} (MTA) / \emph{mail delivery agent} (MDA)
 \end{items}
 
-\paragraph{SMTP --- Aufbau}
+\paragraph{Mail --- SMTP (Simple Mail Transfer Protocol)}
 \begin{items}
+	\item Transfer von Mails zwischen Mailservern sowie vom User Agent zum Mailserver
   \item Drei Phasen: \\*
     1. Handshake \\*
-    2. Nachrichtenübermittlung \\*
+    2. Nachrichtenübermittlung (E-Mail aus Header + Body) \\*
     3. Abschluss
-  \item Command/Response-Interaktionen \\*
-    - ähnlich Request/Response bei HTTP \\*
+  \item Client/Server-Model, Command/Response-Interaktionen \\*
+    - Ähnlich Request/Response bei HTTP, nutzt ebenfalls TCP (Port 25) \\*
     - Kommandos: ASCII-Text \\*
     - Antwort: Statuscode + Nachricht
 \end{items}
-\begin{figure}[H]\centering\label{SMTPAufbau}\includegraphics[width=0.33\textwidth]{SMTPAufbau}\end{figure}
+%\begin{figure}[H]\centering\label{SMTPAufbau}\includegraphics[width=0.33\textwidth]{SMTPAufbau}\end{figure}
 
-\paragraph{MIME}
+\paragraph{Mail --- MIME (Multipurpose Internet Mail Exstensions)}
 \begin{items}
-  \item \textbf{Problem}: SMTP kann nur ASCII-Texte versenden, keine Dateien
+  \item \textbf{Problem}: SMTP kann nur 7-Bit ASCII-Texte versenden, keine Dateien
   \item \textbf{MIME}: erweitert Kopfteil einer Nachricht um Formatinformation \\*
-    - \emph{Content-Type}: Definiert Typ des E-Mail-Inhalts
+    \emph{Content-Type}: Definiert Typ des E-Mail-Inhalts; \emph{Content-Transfer-Encoding}
 \end{items}
 
 \paragraph{Mail --- Postfach-Abfrage}
 \begin{items}
-  \item \textbf{POP3} (\emph{post office protocol 3}): \\*
-    - Client holt von Mailserver empfangene/gespeicherte Nachrichten ab \\*
-    - einfache Funktionalität \\*
-    - verwaltet Nachrichten im UA, \emph{keine} Synchronisation zwischen mehreren UAs
-  \item \textbf{IMAP} (\emph{interactive mail access protocol}): \\*
-    - Nachtichten werden zentral auf Mailserver verwaltet \\*
-    - erweiterte Kommandos (Ordner, Filter) \\*
+  \item \textbf{POP3} (\emph{post office protocol 3}): Verwaltung im UA, \emph{keine} Synchronisation\\*
+    Client holt am Mailserver gespeicherte Nachrichten ab\\*
+    nur einfache Funktionalität (\textit{list, retr, dele})
+  \item \textbf{IMAP} (\emph{interactive mail access protocol}): Zentrale Verwaltung auf Mailserver\\*
+    	Erweiterte Kommandos (Ordner, Filter)
+   \item \textbf{Web-Mail}
 \end{items}
 
-\paragraph{XMPP}
+\paragraph{WhatsApp --- XMPP (eXtensible Messaging and Presence Protocol)}
 \begin{items}
   \item \emph{Echtzeit-XML-Streaming-Protokoll}
-  \item Grundlage für Whatsapp usw.
   \item Dezentral, ähnlich wie E-Mail
+  \item Whatsapp nutzt einen Zentralen Server und proprietäre Variante des Protokolls
   \item \textbf{Clients}: zu ihrem jeweiligen Server verbunden
   \item \textbf{Server}: verbinden sich untereinander zur Nachrichtenübermittlung
-  \item \textbf{Adressformat}: \\*
-    - \emph{Nutzer}: Server + Username, z.B. alice@jabber.org \\*
-    - \emph{Clients}: pro Nutzer, z.B. alice@jabber.org/laptop
+  \item \textbf{Nachricht:} XML-Dokumente (erweiterbares Format)
+  \item \textbf{Adressformat}: Server + Username, evtl. Client (z.B. alice@jabber.org/laptop)
 \end{items}
 
-\paragraph{DNS --- Grundlagen}
+\paragraph{DNS (Domain Name System)}
 \begin{items}
-  \item \textbf{Ziel}: Verwendung von Namen statt IPs
-  \item \textbf{Aufgabe}: Zuordnung IP-Adresse \( \leftrightarrow \) Name
+  \item \textbf{Ziel}: Verwendung von Namen statt IP-Adressen
+  \item \textbf{Aufgabe}: Zuordnung IP-Adresse \( \leftrightarrow \) Name (Subdomäne . Domäne . Top-Level-Domain)
   \item \textbf{Funktionalitäten}: \\*
     - \emph{Registrierung} von Namen + IP-Adressen \\*
-    - \emph{Auflösung} von Namen in IP-Adressen
+    - \emph{Auflösung} von Namen in IP-Adressen\\*
+    - \emph{Host Alias}: Löse einfacher zu merkende Alias-Namen in kanonische Namen auf\\*
+    - \emph{Mail Server Alias}: Liefere E-Mail-Server zu einer Domain\\*
+    - \emph{Lastverteilung}: Mehrere IPs von redundanten Servern in zufälliger Reihenfolge\\*
+    \item Protokoll der Anwendungsschicht, über UDP (Port 53) realisiert, Client-Server-Modell
+    \item Basisdienst, keine eigentliche Anwendung: Komplexität am Rand des Netzes
 \end{items}
 
 \paragraph{DNS --- Aufbau}
 \begin{items}
-  \item Verteilte Datenbank von Name-Servern (DNS-Servern) \\*
-    - Client-Server-Modell \\*
-    - Server kann Anfrage an weitere Server weiterleiten
-  \item Protokoll der Anwendungsschicht \\*
-    - Über Port 53 (UDP) realisiert \\*
-  \item Basisdienst \( \leadsto \) keine Anwendung \\*
-    - Komplexität am Rande des Netzes lokalisiert \\*
-    \phantom{-} \( \to \) Internet-Design-Philoshopie!
+	\item Probleme mit zentralem Server: Singuläre Fehlerquelle, Verkehrsaufkommen, geografische Entfernung, Verwaltungsaufwand, Abhängigkeit\\*
+	
+  \item Verteilte Datenbank in einer \textbf{Hierarchie} von Name-Servern (DNS-Servern)
+  	\item \textbf{Lokaler Name-Server}: Erste Anfrage immer zu lokalem Server, Antwort aus eigener Zuordnungsdatenbank, dem Cache oder nach Befragung anderer DNS-Server
+  	\item \textbf{Autoritativer Name-Server}: Enthält autoritative Abbildungen, jeder Host ist bei einem registriert (in seinem Netz)
+  	\item \textbf{Top-Level Domain (TLD) Server}
+  	\item \textbf{Root-Server}: Enthalten nur Einträge für TLDs, fixe IP-Adressen, 13 Root-Server-Cluster
 \end{items}
 
 \paragraph{DNS --- Anfragen}
 \begin{items}
-  \item \textbf{Rekursiv}: kennt angefragter Server Antwort nicht, fragt dieser dahinterliegende Server, bis er Antwort bekommt
-  \item \textbf{Iterativ}: kennt angefragter Server Antwort nicht, fragt \emph{Client} andere Server
+  \item \textbf{Rekursiv}: kennt angefragter Server Antwort nicht, fragt dieser weitere Server, bis er Antwort zurückliefern kann
+  \item \textbf{Iterativ}: kennt ein Server die Antwort nicht, verweist er den \emph{Client} an andere Server
   \item \textbf{Üblich}: Client fragt lokalen Name-Server rekursiv, dieser dann iterativ
 \end{items}
 
 \paragraph{DNS --- Resource Records (RR)}
 \begin{items}
   \item DNS ordnet Domänen zu Einträgen zu
-  \item \textbf{A / AAAA} (Adress): Abbildung Name auf IPv4/IPv6-Adresse
-  \item \textbf{MX} (Mail Exchange): Mailserver einer Domäne
-  \item \textbf{NS} (Name Server): Nameserver einer Domäne
-  \item \textbf{CNAME} (Canonical Name): Alias-Namen für Rechner/Domänen
-  \item \textbf{PTR} (Pointer): Abbildung IP-Adresse auf Name
+  \item \textbf{A / AAAA} (Address): Abbildung Name auf IPv4/IPv6-Adresse
+  \item \textbf{MX} (Mail Exchange): Mailserver einer Domäne (IP-Adresse)
+  \item \textbf{NS} (Name Server): Nameserver einer Domäne (Hostname)
+  \item \textbf{CNAME} (Canonical Name): Alias-Namen für Rechner/Domänen (Domain)
+  \item \textbf{PTR} (Pointer): Abbildung IP-Adresse auf Name (Domain)
+\end{items}
+
+\paragraph{Content Delivery Networks (CDN)}
+\begin{items}
+	\item \textbf{Beispiel: Videostreaming} (hohe Datenrate, Datenqualität)
+	\item \textbf{DASH (Dynamic, Adaptive Streaming over HTTP)}: Video aufgeteilt in Chunks, jeweils in mehreren Qualitäten (Bitraten) verfügbar, URLs und Infos in Manifest-Datei\\*
+	Client wählt adaptiv bestmögliche Bitrate für jeden Chunk
+	\item \textbf{Content Distribution}: Content zu hunderttausend Nutzern bringen
+	\item Mega-Server: Skaliert nicht (Single Point of Failure, Netzwerküberlastung, Entfernung)
+	\item \textbf{CDN:} Content auf geographisch verteilte Server kopieren\\*
+		Third-Party CDNs (z.B. Akamei, Limelight), Private CDNs (z.B. Google für YouTube)
+	\item Zwei Strategien:\\*
+		- Enter Deep: Viele kleine Cluster in Zugangsnetzen nahe beim Nutzer\\*
+		- Bring Home: Wenige große Cluster in wichtigen IXPs für geringeren Verteilungs- und Wartungsaufwand
+	\item DNS-Manipulation: Autoritativer DNS-Server des CDN passt Antwort an IP-Adresse des anfragenden lokalen DNS-Server an, wählt einen nahe gelegenen CDN-Server aus
 \end{items}
