@@ -1,42 +1,16 @@
-\documentclass[aip,jmp,amsmath,amssymb,reprint,nobalancelastpage]{revtex4-1}
+\documentclass[ngerman]{latex-classes/summary}
 
-\include{assets/dependencies}
-
-\include{assets/definitions}
-
-\titleformat{\paragraph}[runin]
-{\scriptsize\bfseries\scshape}{}{0em}{}
-\titlespacing*{\paragraph}{0em}{1em}{1em}
-
-\newenvironment{smashedalign}
- {$\!\aligned}
- {\endaligned$}
+\title{Zusammenfassung Rechnernetze}
+\author{Jens Ochsenmeier}
 
 \begin{document}
 
-\begin{scriptsize}
-
   \input{chapters/01_Einfuehrung}
-
   \input{chapters/02_Anwendungen}
-
-  \newpage
-
   \input{chapters/03_Transport}
-
-  \newpage
-
   \input{chapters/04_Vermittlung}
-  
-  \newpage
-
   \input{chapters/05_Sicherung}
-
-  \newpage
-
   \input{chapters/06_Architektur}
-
   \input{chapters/07_Sicherheit}
 
-\end{scriptsize}
 \end{document}

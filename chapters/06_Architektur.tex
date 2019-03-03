@@ -1,122 +1,141 @@
 \section{Architektur}
+
 \paragraph{Grundmodell}
-\begin{items}
+\begin{itemize}
 	\item Daten überbrücken räumliche Distanz (abstrakten Übertragungsabschnitt)
 	\item Abstraktion auf Basis von \textbf{Schichten}, stellen Dienste über Schnittstellen bereit
 	\item Höhere Schicht erfordert Dienste der darunterliegenden Schicht
-	\smallskip
-	\item \textbf{Ziele:}\\*
-		- Komplexitätsreduktion (Vereinheitlichung, Modularisierung)\\*
-		- Interoperabilität (Hersteller-/Systemunabhängigkeit)\\*
-		- Flexibilität und Erweiterbarkeit
-		\medskip
-	\item \textbf{Horizontale Kommunikation}: zwischen Sender und Empfänger \\*
-			- Protokollinstanzen einer Schicht tauschen Daten aus um Dienst zu erbringen
-	\item \textbf{Vertikale Kommunikation}: zwischen verschiedenen Schichten in einem System \\*
-			- Protokollinstanz Schicht n greift auf Dienste von Protokollinstanz Schicht n-1 zu
-\end{items}
+	\item \textbf{Ziele}:
+	\begin{itemize}
+    \item Komplexitätsreduktion (Vereinheitlichung, Modularisierung)
+    \item Interoperabilität (Hersteller-/Systemunabhängigkeit)
+    \item Flexibilität und Erweiterbarkeit
+  \end{itemize}
+	\item \textbf{Horizontale Kommunikation}: zwischen Sender und Empfänger, Protokollinstanzen einer Schicht tauschen Daten aus um Dienst zu erbringen
+	\item \textbf{Vertikale Kommunikation}: zwischen verschiedenen Schichten in einem System, Protokollinstanz Schicht n greift auf Dienste von Protokollinstanz Schicht n-1 zu
+\end{itemize}
 
 \paragraph{OSI-Referenzmodell}
-\begin{items}
-\item \textbf{Logisches} Modell (gedankliche Strukturierung), nicht Implementierungsmodell
+\begin{itemize}
+\item \textbf{Logisches} Modell, nicht Implementierungsmodell
 \item Keine Protokolle (nur Prinzipien), offener Standard
 \item Unterteilung in Transportsystem (1-4) und Anwendungssystem (5-7)
-\bigskip
-  \item \textbf{Schicht 1}: Bit-Übertragungsschicht (\emph{physical layer}) \\*
-    - Bitübertragung \\*
-    - Verwendung von Leitungscodes usw \\*
-    - \emph{keine} Pufferung, \emph{kein} zuverlässiger Dienst \\*
-    - \emph{Ziel}: Übertragungsqualität
-  \item \textbf{Schicht 2}: Sicherungsschicht (\emph{data link layer}) \\*
-    - \emph{Ziel}: Kommunikation zwischen physikalisch benachbarten Systemen \\*
-    - Erkennung/Behebung von Fehlern der Bitübertragungsschicht \\*
-    - Bitstrom in Rahmen gliedern \\*
-    - Puffern bei Sender + Empfänger
-  \item \textbf{Schicht 3}: Vermittlungsschicht (\emph{network layer}) \\*
-    - \emph{Ziel}: Verknüpfung von Übertragungsabschnitten zu Netz \\*
-    - Wegewahl im Kommunikationssystem \\*
-    - Geräteadressierung \\*
-    - Multiplexing
-  \item \textbf{Schicht 4}: Transportschicht (\emph{transport layer}) \\*
-    - \emph{Ziel}: Übertragung von Daten zwischen Anwendungen \\*
-    - Abstrahiert von Diensten der Vermittlungsschicht \\*
-    - Fehlererkennung/-behebung \\*
-    - Pufferung \\*
-    - Adressierung von Transportdienstnutzern \\*
-    - Multiplexing
-  \item \textbf{Schicht 5}: Sitzungsschicht (\emph{session layer}) \\*
-    - \emph{Ziel}: Nichtunterbrechbarkeit von Kommunikationsbeziehungen \\*
-    - Datenauschtauschsgliederung nach Gesichtspunkten der Anwendung\\*
-    - Ablaufsteuerung/Koordination
-    - Bereitstellen von Sitzungen
-  \item \textbf{Schicht 6}: Darstellungsschicht (\emph{presentation layer}) \\*
-    - \emph{Ziel}: Einheitliche Datendarstellung \\*
-    - Kommunikation zwischen heterogenen Geräten \\*
-    - Beibehaltung der Informationssemantik bei Überführung der Syntax
-  \item \textbf{Schicht 7}: Anwendungsschicht (\emph{application layer}) \\*
-    - \emph{Ziel}: Austausch anwendungsabhängiger Daten \\*
-\end{items}
-\begin{figure}[H]\centering\label{OSI}\includegraphics[width=0.4\textwidth]{OSI}\end{figure}
-%\begin{figure}[H]\centering\label{OSIKapselung}\includegraphics[width=0.33\textwidth]{OSIKapselung}\end{figure}
-
-\newpage
+  \item \textbf{Schicht 1}: Bit-Übertragungsschicht (\emph{physical layer})
+  \begin{itemize}
+    \item \emph{Ziel}: Übertragungsqualität
+    \item Bitübertragung
+    \item Verwendung von Leitungscodes usw
+    \item \emph{keine} Pufferung, \emph{kein} zuverlässiger Dienst
+  \end{itemize}
+  \item \textbf{Schicht 2}: Sicherungsschicht (\emph{data link layer})
+  \begin{itemize}
+    \item \emph{Ziel}: Kommunikation zwischen physikalisch benachbarten Systemen
+    \item Erkennung/Behebung von Fehlern der Bitübertragungsschicht
+    \item Bitstrom in Rahmen gliedern
+    \item Puffern bei Sender + Empfänger
+  \end{itemize}
+  \item \textbf{Schicht 3}: Vermittlungsschicht (\emph{network layer})
+  \begin{itemize}
+    \item \emph{Ziel}: Verknüpfung von Übertragungsabschnitten zu Netz
+    \item Wegewahl im Kommunikationssystem
+    \item Geräteadressierung, Multiplexing
+  \end{itemize}
+  \item \textbf{Schicht 4}: Transportschicht (\emph{transport layer})
+  \begin{itemize}
+    \item \emph{Ziel}: Übertragung von Daten zwischen Anwendungen
+    \item Abstrahiert von Diensten der Vermittlungsschicht
+    \item Fehlererkennung/-behebung
+    \item Pufferung, Multiplexing
+    \item Adressierung von Transportdienstnutzern
+  \end{itemize}
+  \item \textbf{Schicht 5}: Sitzungsschicht (\emph{session layer})
+  \begin{itemize}
+    \item \emph{Ziel}: Nichtunterbrechbarkeit von Kommunikationsbeziehungen
+    \item Datenaustausch-Gliederung nach Gesichtspunkten der Anwendung
+    \item Ablaufsteuerung/Koordination
+    \item Bereitstellen von Sitzungen
+  \end{itemize}
+  \item \textbf{Schicht 6}: Darstellungsschicht (\emph{presentation layer})
+  \begin{itemize}
+    \item \emph{Ziel}: Einheitliche Datendarstellung
+    \item Kommunikation zwischen heterogenen Geräten
+    \item Beibehaltung der Informationssemantik bei Überführung der Syntax
+  \end{itemize}
+  \item \textbf{Schicht 7}: Anwendungsschicht (\emph{application layer})
+  \begin{itemize}
+    \item \emph{Ziel}: Austausch anwendungsabhängiger Daten
+  \end{itemize}
+\end{itemize}
 
 \paragraph{Internet-Referenzmodell}
-\begin{items}
-  \item Einfachereres Modell, nur 4 Schichten (manchmal 5 bei Trennung von Sicherung und Bit-Übertragung)
+\begin{itemize}
+  \item Einfacheres Modell, nur 4 Schichten (manchmal 5 bei Trennung von Sicherung und Bit-Übertragung)
   \item Darstellungs- und Sitzungsaufgaben in Anwendungen verlagert
-\end{items}
-\begin{figure}[H]\centering\label{Internetmodell}\includegraphics[width=0.33\textwidth]{Internetmodell}\end{figure}
+\end{itemize}
 
 \paragraph{Datenkapselung}
-\begin{items}
+\begin{itemize}
 	\item Information wird durch alle Schichten durchgereicht
 	\item Daten werden in jeder Schicht gekapselt (mit Header und/oder Trailer versehen)
-\end{items}
-\begin{figure}[H]\centering\label{KapselungInternet}\includegraphics[width=0.33\textwidth]{KapselungInternet}\end{figure}
+\end{itemize}
+\begin{figure}[H]\centering\label{KapselungInternet}\includegraphics[width=.7\linewidth]{KapselungInternet}\end{figure}
 
-\paragraph{Protokolle und Dienste}
-\begin{items}
-  \item \textbf{Protokoll}: Regeln und Formate für Datenaustausch \emph{innerhalb} einer Schicht
-  \item \textbf{Dienst}: Bündelung zusammengehöriger Funktionen \\*
-    - Zusammenwirkung von Protokollinstanzen \emph{innerhalb} einer Schicht \\*
-    - Schichten gehen über gesamtes Kommunikationssystem hinweg\\*
-    - \emph{Dienstfunktion}: einzelne Dienstteile unabhängig voneinander nutzbar \\*
-    - \emph{Dienstprimitiv}: Einzelvorgänge einer Dienstfunktion \\*
-      \phantom{-} \( \cdot \) \emph{request} (Req) --- Beauftragung (Nehmer \( \to \) Geber) \\*
-      \phantom{-} \( \cdot \) \emph{indication} (Ind) --- Partnerbenachrichtigung (Nehmer \( \leftarrow \) Geber) \\*
-      \phantom{-} \( \cdot \) \emph{response} (Rsp) --- Partnerbeantwortung (Nehmer \( \to \) Geber) \\*
-      \phantom{-} \( \cdot \) \emph{confirmation} (Cnf) --- Abschlussbenachrichtigung (Nehmer \( \leftarrow  \) Geber) \\*
-    - \emph{Dienstehierarchie}: Dienst baut auf anderen Diensten auf (Dienstbringer/-nehmer) \\*
-    - \emph{Dienstzugangspunkte}: Dienstschnittstellen
-\end{items}
+\paragraph{Protokolle}
+Regeln und Formate für Datenaustausch \emph{innerhalb} einer Schicht
+
+\paragraph{Dienste}
+\begin{itemize}
+  \item Bündelung zusammengehöriger Funktionen
+  \item Zusammenwirkung von Protokollinstanzen \emph{innerhalb} einer Schicht
+  \item Schichten gehen über gesamtes Kommunikationssystem hinweg
+  \item \emph{Dienstfunktion}: einzelne Dienstteile unabhängig voneinander nutzbar
+  \item \emph{Dienstprimitiv}: Einzelvorgänge einer Dienstfunktion
+  \begin{itemize}
+    \item \emph{request} (Req): Beauftragung (Nehmer \( \to \) Geber)
+    \item \emph{indication} (Ind): Partnerbenachrichtigung (Nehmer \( \leftarrow \) Geber)
+    \item \emph{response} (Rsp): Partnerbeantwortung (Nehmer \( \to \) Geber)
+    \item \emph{confirmation} (Cnf): Abschlussbenachrichtigung (Nehmer \( \leftarrow  \) Geber)
+  \end{itemize}
+  \item \emph{Dienstehierarchie}: Dienst baut auf anderen Diensten auf \\* (Dienstbringer/-nehmer)
+  \item \emph{Dienstzugangspunkte}: Dienstschnittstellen
+\end{itemize}
 
 \paragraph{Ablauf --- Webseitenaufruf}
-\begin{items}
+\begin{itemize}
   \item \textbf{Start}: Einstecken Netzwerkkabel
   \item \textbf{Ende}: Seitenempfang
-  \item \textbf{Netzverbindung}: IP erhalten, Router + DNS kennenlernen \\*
-    1. DHCP-Anfrage (verpackt in UDP, IP, 802.3) \\*
-    2. Ethernet-Paket wird im LAN gebroadcastet \\*
-    3. DHCP-Server im Router empfängt + entpackt Paket \\*
-    4. DHCP-Server erstellt DHCP ACK-Paket mit Client-IP, Router-IP, DNS-IP \\*
-    5. DHCP-Antwort wird verpackt und direkt an Client gesendet \\*
-    6. Client empfängt und entpackt Paket
-  \item \textbf{ARP}: MAC des Routers kennenlernen \\*
-    1. ARP-Anfrage an Broadcast-Adresse \\*
-    2. Router sendet seine MAC in ARP-Antwort
-  \item \textbf{DNS}: IP-Adresse der angeforderten Webseite kennenlernen \\*
-    1. IP-Datagramm mit DNS-Anfrage wird von LAN-Switch zu lokalem Router geleitet \\*
-    2. IP-Datagramm: lokales Netz \( \to \) ISP-Netz \( \to \) DNS-Server (mit RIP oder OSPF) \\*
-    3. Paket wird an DNS-Server entpackt \\*
-    4. DNS-Server antwortet Client mit angeforderter IP
-  \item \textbf{TCP}: Aufbau einer TCP-Verbindung \\*
-    1. Eröffnung eines TCP-Sockets zum Webserver \\*
-    2. TCP-SYN-Segment wird zu Server geroutet \\*
-    3. Server antwortet mit SYNACK
-  \item \textbf{HTTP}: Webseite laden \\*
-    1. HTTP-Anfrage wird per TCP-Socket gesendet \\*
-    2. IP-Datagramm mit HTTP-Anfrage wird zu Webserver geroutet \\*
-    3. Server antwortet mit HTTP-Antwort \\*
-    4. IP-Datagramm mit HTTP-Antwortet wird zurück zu Client geroutet
-\end{items}
+  \item \textbf{Netzverbindung}: IP erhalten, Router + DNS kennenlernen
+  \begin{enumerate}
+    \item DHCP-Anfrage (verpackt in UDP, IP, 802.3)
+    \item Ethernet-Paket wird im LAN gebroadcastet
+    \item DHCP-Server im Router empfängt + entpackt Paket
+    \item DHCP-Server erstellt DHCP ACK-Paket mit Client-IP, Router-IP, DNS-IP
+    \item DHCP-Antwort wird verpackt und direkt an Client gesendet
+    \item Client empfängt und entpackt Paket
+  \end{enumerate}
+  \item \textbf{ARP}: MAC des Routers kennenlernen
+  \begin{enumerate}
+    \item ARP-Anfrage an Broadcast-Adresse
+    \item Router sendet seine MAC in ARP-Antwort
+  \end{enumerate}
+  \item \textbf{DNS}: IP-Adresse der angeforderten Webseite kennenlernen
+  \begin{enumerate}
+    \item IP-Datagramm mit DNS-Anfrage wird von LAN-Switch zu lokalem Router geleitet
+    \item IP-Datagramm: lokales Netz \( \to \) ISP-Netz \( \to \) DNS-Server (mit RIP oder OSPF)
+    \item Paket wird an DNS-Server entpackt
+    \item DNS-Server antwortet Client mit angeforderter IP
+  \end{enumerate}
+  \item \textbf{TCP}: Aufbau einer TCP-Verbindung
+  \begin{enumerate}
+    \item Eröffnung eines TCP-Sockets zum Webserver
+    \item TCP-SYN-Segment wird zu Server geroutet
+    \item Server antwortet mit SYNACK
+  \end{enumerate}
+  \item \textbf{HTTP}: Webseite laden
+  \begin{enumerate}
+    \item HTTP-Anfrage wird per TCP-Socket gesendet
+    \item IP-Datagramm mit HTTP-Anfrage wird zu Webserver geroutet
+    \item Server antwortet mit HTTP-Antwort
+    \item IP-Datagramm mit HTTP-Antwortet wird zurück zu Client geroutet
+  \end{enumerate}
+\end{itemize}
